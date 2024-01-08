@@ -12,7 +12,7 @@ const Card = ({
   return (
     <div className="relative bg-white rounded-md max-h-full w-full max-w-[500px] z-1 ">
       {isLoading ? (
-        <p>Loading...</p>
+        <p className="p-4">Loading...</p>
       ) : (
         <div className="flex flex-col">
           <div className="flex items-center gap-x-4 mb-4 p-4">

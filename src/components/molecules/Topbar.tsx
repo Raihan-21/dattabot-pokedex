@@ -4,7 +4,7 @@ import React from "react";
 const Topbar = () => {
   return (
     <div
-      className={`w-full bg-primary p-4 text-lg text-yellow ${pokemonSolid.className}`}
+      className={`absolute top-0 w-full bg-primary p-4 text-[30px]  text-yellow ${pokemonSolid.className}`}
     >
       Pokedex
     </div>

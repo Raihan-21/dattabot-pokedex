@@ -14,8 +14,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const getServerSideProps = async () => {
   const res = await axiosInstance.get("/pokemon?limit=10");
-  console.log(res.data);
-
   return {
     props: { responseData: res.data },
   };
@@ -47,19 +45,21 @@ export default function Home({ responseData }: { responseData: any }) {
    *
    */
 
-  const fetchData = useCallback(async () => {
-    setOffset(offset + 10);
+  // Client side fetch data funtion
+  const fetchData = async () => {
+    setOffset((prevState) => prevState + 10);
     try {
       await fetch();
     } catch (error) {}
-  }, [data, offset, isLoading]);
+  };
+
+  // Get detail function
   const getDetail = useCallback(async (url: string) => {
     setIsSelected(true);
     setIsDetailLoading(true);
     try {
       const res = await axios.get(url);
       setDetailData(res.data);
-      console.log(res.data);
     } catch (error) {
     } finally {
       setIsDetailLoading(false);
@@ -72,15 +72,18 @@ export default function Home({ responseData }: { responseData: any }) {
    *
    */
 
+  //Assign SSR data to client side state
   useEffect(() => {
     setDataList(responseData.results);
     // setresponseData
   }, [responseData]);
 
+  // Update data list everytime usefetch is called
   useEffect(() => {
     if (data) setDataList((prevState) => [...prevState, ...data!.results]);
   }, [data]);
 
+  // Create intersection observer instance for infinite scroll
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
@@ -91,7 +94,7 @@ export default function Home({ responseData }: { responseData: any }) {
     return () => {
       observer.unobserve(observerRef.current);
     };
-  }, [observerRef]);
+  }, [observerRef, offset]);
 
   return (
     <div>
@@ -99,7 +102,7 @@ export default function Home({ responseData }: { responseData: any }) {
       <div
         className={`flex h-full flex-col items-center justify-between ${inter.className}`}
       >
-        <div className="overflow-y space-y-4 p-24">
+        <div className="overflow-y space-y-4 p-24 w-full max-w-[500px]">
           {dataList.length &&
             dataList.map((data: any, i) => (
               <ListItem
