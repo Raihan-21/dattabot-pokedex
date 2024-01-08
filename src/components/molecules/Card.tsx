@@ -64,7 +64,9 @@ const Card = ({
               <p className="font-bold text-xl ">Moves</p>
               {data &&
                 data.moves.length &&
-                data.moves.map((move: any) => <p>{move.move.name}</p>)}
+                data.moves.map((move: any, i: number) => (
+                  <p key={i}>{move.move.name}</p>
+                ))}
             </div>
           </div>
           <button
