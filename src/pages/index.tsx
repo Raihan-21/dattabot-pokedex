@@ -102,7 +102,7 @@ export default function Home({ responseData }: { responseData: any }) {
       <div
         className={`flex h-full flex-col items-center justify-between ${inter.className}`}
       >
-        <div className="overflow-y space-y-4 pt-[100px] w-full max-w-[500px]">
+        <div className="overflow-y space-y-4 pt-[100px] px-4 w-full max-w-[500px]">
           {dataList.length &&
             dataList.map((data: any, i) => (
               <ListItem
