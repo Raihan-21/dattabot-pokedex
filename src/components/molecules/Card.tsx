@@ -25,47 +25,56 @@ const Card = ({
             </div>
             <div>
               <p className="mb-2">#{data && data.id}</p>
-              <p className="text-[30px] font-bold">{data && data.name}</p>
-              <div>
-                <p className="text-md font-bold">Stats</p>
-                <div className="flex flex-col flex-wrap gap-x-4 max-h-[80px]">
-                  {data &&
-                    data.stats.length &&
-                    data.stats.map((stat: any, i: number) => (
-                      <p key={i}>
-                        {stat.stat.name}: {stat.base_stat}
-                      </p>
-                    ))}
-                </div>
-              </div>
+              <p className="text-[30px] font-bold text-secondary capitalize">
+                {data && data.name}
+              </p>
+              <p>Base exp: {data && data.base_experience}</p>
+              <p>Height: {data && data.height}</p>
+              <p>Weight: {data && data.weight}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-x-4 max-h-[300px] bg-gray-200 p-4 overflow-y-scroll">
             <div className="space-y-2">
               <div>
-                <p className="text-lg font-bold">Types</p>
+                <p className="text-lg text-secondary font-bold">Stats</p>
                 {data &&
-                  data.types.length &&
-                  data.types.map((type: any, i: number) => (
-                    <p key={i}>{type.type.name}</p>
+                  data.stats.length &&
+                  data.stats.map((stat: any, i: number) => (
+                    <p className="capitalize" key={i}>
+                      {stat.stat.name}: {stat.base_stat}
+                    </p>
                   ))}
               </div>
               <div>
-                <p className="text-lg font-bold">Abilities</p>
+                <p className="text-lg text-secondary font-bold">Types</p>
+                {data &&
+                  data.types.length &&
+                  data.types.map((type: any, i: number) => (
+                    <p className="capitalize" key={i}>
+                      {type.type.name}
+                    </p>
+                  ))}
+              </div>
+              <div>
+                <p className="text-lg text-secondary font-bold">Abilities</p>
                 {data &&
                   data.abilities.length &&
                   data.abilities.map((ability: any, i: number) => (
-                    <p key={i}>{ability.ability.name}</p>
+                    <p className="capitalize" key={i}>
+                      {ability.ability.name}
+                    </p>
                   ))}
               </div>
             </div>
             <div className=" pb-4">
-              <p className="font-bold text-xl ">Moves</p>
+              <p className="font-bold text-lg text-secondary ">Moves</p>
               {data &&
                 data.moves.length &&
                 data.moves.map((move: any, i: number) => (
-                  <p key={i}>{move.move.name}</p>
+                  <p className="capitalize" key={i}>
+                    {move.move.name}
+                  </p>
                 ))}
             </div>
           </div>
